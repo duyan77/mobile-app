@@ -1,0 +1,15 @@
+{% extends "./base.html" %}
+
+{% load static %}
+
+{% block content %}
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col-md-12 text-center">
+                <h1>Welcome to Mobile Store</h1>
+                <p>Find the best mobile phones and accessories here.</p>
+                <a href="{% url 'store' %}" class="btn btn-primary">Shop Now</a>
+            </div>
+        </div>
+    </div>
+{% endblock %}

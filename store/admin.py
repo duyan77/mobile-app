@@ -2,5 +2,12 @@ from django.contrib import admin
 
 from .models import Category, Product
 
-admin.site.register(Category)  # register the Categorys model
-admin.site.register(Product)  # register the Products model
+
+@admin.register(Category)
+class CategoryAdmin(admin.ModelAdmin):
+	prepopulated_fields = {'slug': ('name',)}
+
+
+@admin.register(Product)
+class ProductAdmin(admin.ModelAdmin):
+	prepopulated_fields = {'slug': ('title',)}

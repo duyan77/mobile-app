@@ -43,6 +43,11 @@ This is a Django-based web application for a mobile store.
     ```sh
     python manage.py createsuperuser
     ```
+## Admin User Account
+
+- **Username:** duyan
+- **Email:** anbui5948@gmail.com
+- **Password:** 123
 
 ## Running the Server
 
