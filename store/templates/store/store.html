@@ -44,7 +44,8 @@
                                  src="{{ product.image.url }}">
                             <div class="card-body mt-auto">
                                 <p class="card-text">
-                                    <a class="text-info text-decoration-none" href="">
+                                    <a class="text-info text-decoration-none"
+                                       href="{{ product.get_absolute_url }}">
                                         {{ product.title | capfirst }}
                                     </a>
                                 </p>
