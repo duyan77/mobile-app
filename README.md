@@ -43,6 +43,12 @@ This is a Django-based web application for a mobile store.
     ```sh
     python manage.py createsuperuser
     ```
+
+3. Load data:
+    ```sh
+    python manage.py loaddata data.json
+    ```
+    
 ## Admin User Account
 
 - **Username:** duyan
