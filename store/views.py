@@ -1,10 +1,17 @@
 from django.shortcuts import get_object_or_404
 from django.shortcuts import render
+from django.contrib.auth.decorators import login_required
 
 from .models import Category, Product
 
 
+def info(request):
+	print(request.user.is_authenticated)
+	return {'user': request.user}
+
 # Create your views here.
+def login(request):
+	return render(request, 'store/login.html')
 
 def store(request):
 	all_products = Product.objects.all()

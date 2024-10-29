@@ -122,19 +122,38 @@
         <ul class="navbar-nav ms-auto">
 
 
+            {% if user.is_authenticated %}
             <li class="nav-item">
 
-                <a class="btn btn-alert navbar-btn text-white" type="button" href="/"> Register </a>
+                <a class="btn btn-alert navbar-btn text-white" type="button" href="/profile"> 
+                    <img src="{{user.avatar_url}}" alt="Avatar" class="rounded-circle" width="30" height="30">
+
+                    Chào {{user.first_name}} 
+                </a>
+
+            </li>
+
+            <li class="nav-item">
+
+                <a class="btn btn-alert navbar-btn text-white" type="button" href="/logout"> Logout </a>
+            
+            </li>
+            {% else %}
+
+            <li class="nav-item">
+
+                <a class="btn btn-alert navbar-btn text-white" type="button" href="/signup"> Register </a>
 
             </li>
 
 
             <li class="nav-item">
 
-                <a class="btn btn-alert navbar-btn text-white" type="button" href="/"> Login </a>
+                <a class="btn btn-alert navbar-btn text-white" type="button" href="/login"> Login </a>
 
             </li>
-
+                
+            {% endif %}
 
             &nbsp; &nbsp; &nbsp;
 

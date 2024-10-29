@@ -1,0 +1,21 @@
+{% extends "store/base.html" %}
+{% load static %}
+
+{% block content %}
+    <div class="login-container"></div>
+        <h2>Login</h2>
+        <form method="post" action="{% url 'account_login' %}">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Login</button>
+        </form>
+        <p>Don't have an account? <a href="{% url 'account_signup' %}">Sign up</a></p>
+        <p><a href="{% url 'account_reset_password' %}">Forgot your password?</a></p>
+
+        <p>OR</p>
+
+        <a href="/google/login">
+            Đăng nhập bằng Google
+        </a>
+    </div>
+{% endblock %}
