@@ -15,3 +15,4 @@ class CustomSignupForm(SignupForm):
         user.address = self.cleaned_data['address']
         user.save()
         return user
+    
