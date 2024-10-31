@@ -8,6 +8,9 @@
         {% if form.errors %}
             <div class="alert alert-danger" role="alert">
                  {{ form.non_field_errors | safe }}
+                 {{ form.error.username }}
+                {{ form.error.password }}
+                
             </div>
             <style>
                 ul{
@@ -15,7 +18,13 @@
                     margin: 0!important;
                 }
             </style>
-        {% endif %}       
+        {% endif %}   
+        
+        {% if messages.error %}
+            <div class="alert alert-danger" role="alert">
+                {{ messages.error }}
+            </div>
+        {% endif %}
 
         <form method="post" action="{% url 'account_login' %}">
             {% csrf_token %}
