@@ -174,17 +174,24 @@ SOCIALACCOUNT_PROVIDERS['google']['APP'] = {
 
 AUTH_USER_MODEL = 'store.User'
 
+ACCOUNT_ADAPTER = 'store.adapter.NoSignupAccountAdapter'
+SOCIALACCOUNT_ADAPTER = 'store.adapter.NoSignupSocialAccountAdapter'
+
+ACCOUNT_FORMS = {
+    'signup': 'store.forms.CustomSignupForm',
+}
+
 # XÁC THỰC MAIL
 
-ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
-ACCOUNT_EMAIL_REQUIRED = True
-ACCOUNT_AUTHENTICATION_METHOD = 'email'
+# ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
+# ACCOUNT_EMAIL_REQUIRED = True
+# ACCOUNT_AUTHENTICATION_METHOD = 'email'
 
-EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_PORT = 587
-EMAIL_USE_TLS = True
-# Acc 5 năm trước rồi, dùng test thôi đừng phá
-EMAIL_HOST_USER = 'postmaster@sandboxa6ba3f07db914364b06904bdb4a299dd.mailgun.org'
-EMAIL_HOST_PASSWORD = '9dc55992c3c00b97d887e7bfb58aad61-72e4a3d5-ddd2e29a' 
-DEFAULT_FROM_EMAIL = 'trieukon1011@gmail.com'
+# EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+# EMAIL_HOST = 'smtp.gmail.com'
+# EMAIL_PORT = 587
+# EMAIL_USE_TLS = True
+# # Acc 5 năm trước rồi, dùng test thôi đừng phá
+# EMAIL_HOST_USER = 'postmaster@sandboxa6ba3f07db914364b06904bdb4a299dd.mailgun.org'
+# EMAIL_HOST_PASSWORD = '9dc55992c3c00b97d887e7bfb58aad61-72e4a3d5-ddd2e29a' 
+# DEFAULT_FROM_EMAIL = 'trieukon1011@gmail.com'

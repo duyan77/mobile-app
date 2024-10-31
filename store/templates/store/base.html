@@ -126,7 +126,11 @@
             <li class="nav-item">
 
                 <a class="btn btn-alert navbar-btn text-white" type="button" href="/profile"> 
-                    <img src="{{user.avatar_url}}" alt="Avatar" class="rounded-circle" width="30" height="30">
+                    {% if user.avatar_url %}
+                        <img src="{{ user.avatar_url }}" class="rounded-circle" width="30" height="30">
+                    {% else %}
+                        <i class="fa fa-user" aria-hidden="true"></i>
+                    {% endif %}
 
                     Chào {{user.first_name}} 
                 </a>
@@ -181,17 +185,10 @@
 <body>
 
 
-{% block content %}
+<div class="container">
+    {% block content %}{% endblock %}
 
-
-
-
-
-
-
-
-{% endblock %}
-
+</div>
 
 </body>
 
