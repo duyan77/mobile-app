@@ -1,10 +1,17 @@
 from django.shortcuts import get_object_or_404
 from django.shortcuts import render
+from django.contrib.auth.decorators import login_required
 
 from .models import Category, Product
 
 
+def info(request):
+	print(request.user.is_authenticated)
+	return {'user': request.user}
+
 # Create your views here.
+def login(request):
+	return render(request, 'store/login.html')
 
 def store(request):
 	all_products = Product.objects.all()
@@ -27,3 +34,6 @@ def list_category(request, category_slug=None):
 def product_info(request, slug):
 	product = get_object_or_404(Product, slug=slug)
 	return render(request, 'store/product-info.html', context={'product': product})
+
+def profile(request):
+	return render(request, 'store/profile.html')
