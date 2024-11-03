@@ -114,10 +114,15 @@
                     'action': 'post'
                 },
                 success: function (json) {
+                    {#console.log(json);#}
 
+                    document.getElementById('cart-qty').textContent = json.qty;
                 },
                 error: function (xhr, errmsg, err) {
                     console.log(xhr.status + ": " + xhr.responseText);
+                },
+                finally: function () {
+                    console.log($('#add-button'))
                 }
             });
         });
