@@ -123,39 +123,43 @@
 
 
             {% if user.is_authenticated %}
-            <li class="nav-item">
+                <li class="nav-item">
 
-                <a class="btn btn-alert navbar-btn text-white" type="button" href="/profile">
-                    {% if user.avatar_url %}
-                        <img src="{{ user.avatar_url }}" class="rounded-circle" width="30" height="30">
-                    {% else %}
-                        <i class="fa fa-user" aria-hidden="true"></i>
-                    {% endif %}
+                    <a class="btn btn-alert navbar-btn text-white" type="button" href="/profile">
+                        {% if user.avatar_url %}
+                            <img src="{{ user.avatar_url }}" class="rounded-circle" width="30"
+                                 height="30">
+                        {% else %}
+                            <i class="fa fa-user" aria-hidden="true"></i>
+                        {% endif %}
 
-                    Chào {{user.first_name}}
-                </a>
+                        Chào {{ user.first_name }}
+                    </a>
 
-            </li>
+                </li>
 
-            <li class="nav-item">
+                <li class="nav-item">
 
-                <a class="btn btn-alert navbar-btn text-white" type="button" href="/logout"> Logout </a>
+                    <a class="btn btn-alert navbar-btn text-white" type="button" href="/logout">
+                        Logout </a>
 
-            </li>
+                </li>
             {% else %}
 
-            <li class="nav-item">
+                <li class="nav-item">
 
-                <a class="btn btn-alert navbar-btn text-white" type="button" href="/signup"> Register </a>
+                    <a class="btn btn-alert navbar-btn text-white" type="button" href="/signup">
+                        Register </a>
 
-            </li>
+                </li>
 
 
-            <li class="nav-item">
+                <li class="nav-item">
 
-                <a class="btn btn-alert navbar-btn text-white" type="button" href="/login"> Login </a>
+                    <a class="btn btn-alert navbar-btn text-white" type="button" href="/login">
+                        Login </a>
 
-            </li>
+                </li>
 
             {% endif %}
 
@@ -164,8 +168,23 @@
 
             <li class="nav-item">
 
-                <a type="button" role="button" href="{% url 'cart-summary' %}" class="btn btn-outline-secondary">
+                <a type="button" role="button" href="{% url 'cart-summary' %}"
+                   class="btn btn-outline-secondary">
                     <i class="fa fa-shopping-cart" aria-hidden="true"> </i>
+
+                    &nbsp;
+
+                    <div id="cart-qty" class="d-inline-flex">
+                        {% with qty_amount=cart|length %}
+                            {% if qty_amount > 0 %}
+                                {{ qty_amount }}
+
+                            {% else %}
+                                0
+
+                            {% endif %}
+                        {% endwith %}
+                    </div>
                 </a>
 
             </li>
