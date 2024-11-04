@@ -29,15 +29,12 @@ class NoSignupSocialAccountAdapter(DefaultSocialAccountAdapter):
             user.save()
             sociallogin.connect(request, user)
 
-    # def save_user(self, request, sociallogin, form=None):
-    #     user = sociallogin.user
-    #     user.email = sociallogin.account.extra_data['email']
-    #     user.first_name = sociallogin.account.extra_data.get('given_name', '')
-    #     user.last_name = sociallogin.account.extra_data.get('family_name', '')
-    #     # user.username = sociallogin.account.extra_data['email']
-    #     if sociallogin.account.provider == 'google':
-    #         user.avatar_url = sociallogin.account.extra_data.get('picture', '')
-    #     else:
-    #         user.avatar_url = 'https://png.pngtree.com/png-vector/20220709/ourmid/pngtree-businessman-user-avatar-wearing-suit-with-red-tie-png-image_5809521.png'
-    #     user.save()
-    #     return user
+    def save_user(self, request, sociallogin, form=None):
+        user = super().save_user(request, sociallogin, form)
+        user.emailaddress_set.create(
+            user=user,
+            email=user.email,
+            verified=True,
+            primary=True
+        )
+        return user

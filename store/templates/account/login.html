@@ -7,9 +7,8 @@
         <h2>Đăng nhập</h2>
         {% if form.errors %}
             <div class="alert alert-danger" role="alert">
-                 {{ form.non_field_errors | safe }}
-                 {{ form.error.username }}
-                {{ form.error.password }}
+                 {{ form.errors.username }}
+                {{ form.errors.password }}
                 
             </div>
             <style>
