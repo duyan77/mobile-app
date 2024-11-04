@@ -6,169 +6,165 @@
 {% block content %}
 
 
-    <main class="pt-5">
+<main class="pt-5">
 
-        <div class="container">
+    <div class="container">
 
-            <h1 class="h5"> Shopping cart </h1>
+        <h1 class="h5"> Shopping cart </h1>
 
-            <hr>
+        <hr>
 
-            {# Loop #}
-            {% for item in cart %}
+        {# Loop #}
+        {% for item in cart %}
 
-                {% with product=item.product %}
+        {% with product=item.product %}
 
-                    <br>
+        <br>
 
-                    <div class="row mb-4 border product-item">
+        <div class="row mb-4 border product-item">
 
-                        <div class="col-md-3 col-lg-2 order-md-first bg-light">
+            <div class="col-md-3 col-lg-2 order-md-first bg-light">
 
-                            <img class="img-fluid mx-auto d-block" width="200px"
-                                 alt="{{ product.title }}"
-                                 src="{{ product.image.url }}"> <!-- Product image -->
+                <img class="img-fluid mx-auto d-block" width="200px" alt="{{ product.title }}"
+                    src="{{ product.image.url }}"> <!-- Product image -->
+
+            </div>
+
+
+            <div class="col-md-9 col-lg-10 ps-md-3 ps-lg-10">
+
+                <a href="{{ product.get_absolute_url }}" class="text-decoration-none
+                            text-info">
+
+                    <h1 class="h5 pt-2"> {{ product.title }} </h1>
+
+                </a>
+
+                <div class="border">
+
+                    <div class="col border-bottom">
+
+                        <div class="row p-3">
+
+                            <div class="col-6"> Product</div>
+
+                            <div class="col-6 text-end"><span class="h6 fw-bold">
+                                    {{ product.formatted_price }} </span></div>
 
                         </div>
 
+                    </div>
 
-                        <div class="col-md-9 col-lg-10 ps-md-3 ps-lg-10">
+                    <div class="col">
 
-                            <a href="{{ product.get_absolute_url }}" class="text-decoration-none
-                            text-info">
+                        <div class="row p-3">
 
-                                <h1 class="h5 pt-2"> {{ product.title }} </h1>
+                            <div class="col-12">
 
-                            </a>
+                                <label for="select">Qty</label>
 
-                            <div class="border">
+                                &nbsp;
 
-                                <div class="col border-bottom">
+                                <select id="">
 
-                                    <div class="row p-3">
+                                    <option selected>
 
-                                        <div class="col-6"> Product</div>
+                                        {{ item.qty }}
 
-                                        <div class="col-6 text-end"><span class="h6 fw-bold">
-                                    {{ product.formatted_price }} </span></div>
+                                    </option>
 
-                                    </div>
+                                    <option value="">1</option>
 
-                                </div>
+                                    <option value="">2</option>
 
-                                <div class="col">
+                                    <option value="">3</option>
 
-                                    <div class="row p-3">
+                                    <option value="">4</option>
 
-                                        <div class="col-12">
+                                </select>
 
-                                            <label for="select">Qty</label>
+                                <br> <br>
 
-                                            &nbsp;
+                                <button type="button" id="update-button" class="btn btn-primary btn-sm update-button">
+                                    Update
 
-                                            <select id="">
+                                </button>
 
-                                                <option selected>
+                                &nbsp;
 
-                                                    {{ item.qty }}
+                                <button type="button" id="delete-button" class="btn btn-danger btn-sm delete-button">
+                                    Delete
 
-                                                </option>
+                                </button>
 
-                                                <option value="">1</option>
-
-                                                <option value="">2</option>
-
-                                                <option value="">3</option>
-
-                                                <option value="">4</option>
-
-                                            </select>
-
-                                            <br> <br>
-
-                                            <button type="button" id="update-button"
-                                                    class="btn btn-primary btn-sm update-button">
-                                                Update
-
-                                            </button>
-
-                                            &nbsp;
-
-                                            <button type="button" id="delete-button"
-                                                    class="btn btn-danger btn-sm delete-button">
-                                                Delete
-
-                                            </button>
-
-
-                                        </div>
-
-                                    </div>
-
-                                </div>
 
                             </div>
 
                         </div>
 
                     </div>
-                {% endwith %}
 
-            {% endfor %}
-
-            {# end loop #}
-
-            <div class="col-12 text-end">
-
-                <div class="h6 fw-bold"> Sub total:&nbsp;
-                    <div id="total" class="d-inline-flex"> {{ cart.get_total }} </div>
                 </div>
 
             </div>
 
+        </div>
+        {% endwith %}
+
+        {% endfor %}
+
+        {# end loop #}
+
+        <div class="col-12 text-end">
+
+            <div class="h6 fw-bold"> Sub total:&nbsp;
+                <div id="total" class="d-inline-flex"> {{ cart.get_total }} </div>
             </div>
-            <!-- 03/11 Phúc Tấn thêm tạm nút thanh toán trong giỏ hàng -->
-            <form action="{% url 'create-checkout-session' %}" method="POST" id="payment-form">
-                {% csrf_token %}
-                <div id="card-element"></div>
-                <button type="submit">Thanh toán</button>
-                <div id="card-errors" role="alert"></div>
-            </form>
+
         </div>
 
-        <br>
-        <br>
+    </div>
+    <!-- 03/11 Phúc Tấn thêm tạm nút thanh toán trong giỏ hàng -->
+    <form action="{% url 'create-checkout-session' %}" method="POST" id="payment-form">
+        {% csrf_token %}
+        <div id="card-element"></div>
+        <button type="submit">Thanh toán</button>
+        <div id="card-errors" role="alert"></div>
+    </form>
+    </div>
 
-    </main>
+    <br>
+    <br>
+
+</main>
 
 
-    <script src="https://js.stripe.com/v3/"></script>
-    <script>
-        var stripe = Stripe('{{ sk_test_51QH2duG6ioceCuONjBIvdJJCSr8z7Lo7s0vRd8eDQT0iAZh9i5qpQTbUdKW3RjooRKWwfPbR2a74UIsEb9dQaBfs00PRwhWbI3 }}');
-        var elements = stripe.elements();
-        var cardElement = elements.create('card');
-        cardElement.mount('#card-element');
+<script src="https://js.stripe.com/v3/"></script>
+<script>
+    var stripe = Stripe('{{ sk_test_51QH2duG6ioceCuONjBIvdJJCSr8z7Lo7s0vRd8eDQT0iAZh9i5qpQTbUdKW3RjooRKWwfPbR2a74UIsEb9dQaBfs00PRwhWbI3 }}');
+    var elements = stripe.elements();
+    var cardElement = elements.create('card');
+    cardElement.mount('#card-element');
 
-        var form = document.getElementById('payment-form');
-        form.addEventListener('submit', function(event) {
-            event.preventDefault();
-            stripe.createToken(cardElement).then(function(result) {
-                if (result.error) {
-                    // Hiển thị lỗi cho người dùng
-                    document.getElementById('card-errors').textContent = result.error.message;
-                } else {
-                    // Gửi token tới server
-                    var hiddenInput = document.createElement('input');
-                    hiddenInput.setAttribute('type', 'hidden');
-                    hiddenInput.setAttribute('name', 'stripeToken');
-                    hiddenInput.setAttribute('value', result.token.id);
-                    form.appendChild(hiddenInput);
-                    form.submit();
-                }
-            });
+    var form = document.getElementById('payment-form');
+    form.addEventListener('submit', function (event) {
+        event.preventDefault();
+        stripe.createToken(cardElement).then(function (result) {
+            if (result.error) {
+                // Hiển thị lỗi cho người dùng
+                document.getElementById('card-errors').textContent = result.error.message;
+            } else {
+                // Gửi token tới server
+                var hiddenInput = document.createElement('input');
+                hiddenInput.setAttribute('type', 'hidden');
+                hiddenInput.setAttribute('name', 'stripeToken');
+                hiddenInput.setAttribute('value', result.token.id);
+                form.appendChild(hiddenInput);
+                form.submit();
+            }
         });
-    </script>
+    });
+</script>
 
 
 {% endblock %}
-

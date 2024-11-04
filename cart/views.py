@@ -5,6 +5,7 @@ from django.shortcuts import get_object_or_404
 from django.shortcuts import redirect
 from django.shortcuts import render
 from django.views.decorators.csrf import csrf_exempt
+from decimal import Decimal
 
 from store.models import Product
 from .cart import Cart
@@ -36,32 +37,37 @@ def cart_delete(request):
 # Phúc Tấn Thêm Hàm xử lý thanh toán
 def success(request):
 	return render(request, 'cart/success.html', )
-
-
 def cancel(request):
 	return render(request, 'cart/cancel.html', )
 
+#Phúc Tấn hàm lấy danh sách sản phẩm đang có trong card
+def list_produc(request):
+	cart_instance = Cart(request)
+	list_item = []
+	for item in cart_instance:
+		list_item.append({
+			'price_data': {
+                'currency': 'usd',
+                'product_data': {
+                    'name': item['product'].title,  # Tên sản phẩm từ giỏ hàng
+                    'description': item['product'].description,  # Mô tả sản phẩm từ giỏ hàng (nếu có)
+                },
+                'unit_amount': int(item['price'] * Decimal(1)),  # Giá sản phẩm (cents)
+            },
+            'quantity': item['qty'],  # Số lượng sản phẩm từ giỏ hàng
+		})
+	return list_item
 
 @csrf_exempt
 def create_checkout_session(request):
 	if request.method == 'POST':
-		# Không cần lấy từ request.body nữa vì chúng ta sẽ gán cố định
+		# Không cần lấy từ request.body nữa vì chúng ta sẽ gán cố định và sản phẩm từ trong card ra
+		line_items = list_produc(request)
 		try:
 			# Tạo phiên thanh toán
 			checkout_session = stripe.checkout.Session.create(
 				payment_method_types=['card'],
-				line_items=[{
-					'price_data': {
-						'currency': 'usd',
-						'product_data': {
-							'name': "Phúc Tấn Đang ở đây đợi nè",  # Gán tên sản phẩm cố định
-							'description': "Sản phẩm thương hiệu thời trang nổi tiếng",
-							# Gán mô tả sản phẩm cố định
-						},
-						'unit_amount': 10000,  # Gán giá sản phẩm cố định (tính bằng cents)
-					},
-					'quantity': 1,  # Gán số lượng sản phẩm cố định
-				}],
+				line_items = line_items,
 				mode='payment',
 				success_url='http://127.0.0.1:8000/cart/success/',
 				cancel_url='http://127.0.0.1:8000/cart/cancel/',
