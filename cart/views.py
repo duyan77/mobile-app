@@ -29,3 +29,7 @@ def cart_delete(request):
 
 def cart_update(request):
 	pass
+
+
+def cart_empty(request):
+	return render(request, 'cart/cart-empty.html')

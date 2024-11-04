@@ -1,4 +1,5 @@
 from decimal import Decimal
+
 from store.models import Product
 
 
@@ -39,4 +40,6 @@ class Cart:
 			item['total'] = item['price'] * item['qty']
 			yield item
 
-
+	def get_total(self):
+		total = sum(Decimal(item['price']) * item['qty'] for item in self.cart.values())
+		return f"{total:,.0f}₫"
