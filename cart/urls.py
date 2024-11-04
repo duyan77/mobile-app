@@ -10,4 +10,8 @@ urlpatterns = [
 	path('delete/', views.cart_delete, name='cart-delete'),
 
 	path('update/', views.cart_update, name='cart-update'),
+    #Phúc Tấn 03/11 Thêm các url cần thiết cho trang thanh toán
+    path('success/', views.success, name='success'),
+    path('cancel/', views.cancel, name='cancel'),
+    path('create-checkout-session/', views.create_checkout_session, name='create-checkout-session'),
 ]
