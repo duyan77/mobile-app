@@ -72,7 +72,7 @@ def create_checkout_session(request):
 				success_url='http://127.0.0.1:8000/cart/success/',
 				cancel_url='http://127.0.0.1:8000/cart/cancel/',
 			)
-			return redirect(checkout_session.url)  # Trả về ID của phiên thanh toán
+			return redirect(checkout_session.url)  # Trả về URL của phiên thanh toán
 		except stripe.error.StripeError as e:
 			return JsonResponse({'error': str(e)})
 	return JsonResponse({'error': 'Invalid request'}, status=400)
