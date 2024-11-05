@@ -1,10 +1,20 @@
-{% include "store/base.html" %}
+{% extends "store/base.html" %}
 
 {% load static %}
 
 
 {% block content %}
+    <style>
+        .empty-product-icon {
+            font-size: 5rem;
+            color: #999;
+        }
 
+        .empty-product-message {
+            font-size: 1.5rem;
+            color: #555;
+        }
+    </style>
 
     <main class="pt-5">
 
@@ -14,92 +24,109 @@
 
             <hr>
 
-            {# Loop #}
-            {% for item in cart %}
-
-                {% with product=item.product %}
-
-                    <br>
-
-                    <div class="row mb-4 border product-item">
-
-                        <div class="col-md-3 col-lg-2 order-md-first bg-light">
-
-                            <img class="img-fluid mx-auto d-block" width="200px"
-                                 alt="{{ product.title }}"
-                                 src="{{ product.image.url }}"> <!-- Product image -->
-
+            {% with qty_amount=cart|length %}
+                {% if qty_amount == 0 %}
+                    <div class="container mt-5">
+                        <div class="row">
+                            <div class="col-12 text-center"><i
+                                    class="fas fa-box-open empty-product-icon"></i>
+                                <p class="empty-product-message mt-3">No products available at
+                                    the moment.</p>
+                            </div>
                         </div>
+                    </div>
+
+                {% else %}
+                    {% for item in cart %}
+
+                        {% with product=item.product %}
+
+                            <br>
+
+                            <div class="row mb-4 border product-item">
+
+                                <div class="col-md-3 col-lg-2 order-md-first bg-light">
+
+                                    <img class="img-fluid mx-auto d-block" width="200px"
+                                         alt="{{ product.title }}"
+                                         src="{{ product.image.url }}"> <!-- Product image -->
+
+                                </div>
 
 
-                        <div class="col-md-9 col-lg-10 ps-md-3 ps-lg-10">
+                                <div class="col-md-9 col-lg-10 ps-md-3 ps-lg-10">
 
-                            <a href="{{ product.get_absolute_url }}" class="text-decoration-none
-                            text-info">
+                                    <a href="{{ product.get_absolute_url }}" class="text-decoration-none
+                                text-info">
+                                        <!-- Product get absolute url -->
 
-                                <h1 class="h5 pt-2"> {{ product.title }} </h1>
+                                        <h1 class="h5 pt-2"> {{ product.title }} </h1>
 
-                            </a>
+                                    </a>
 
-                            <div class="border">
+                                    <div class="border">
 
-                                <div class="col border-bottom">
+                                        <div class="col border-bottom">
 
-                                    <div class="row p-3">
+                                            <div class="row p-3">
 
-                                        <div class="col-6"> Product</div>
+                                                <div class="col-6"> Product</div>
 
                                         <div class="col-6 text-end"><span class="h6 fw-bold">
                                     {{ product.formatted_price }} </span></div>
 
-                                    </div>
+                                            </div>
 
-                                </div>
+                                        </div>
 
-                                <div class="col">
+                                        <div class="col">
 
-                                    <div class="row p-3">
+                                            <div class="row p-3">
 
-                                        <div class="col-12">
+                                                <div class="col-12">
 
-                                            <label for="select">Qty</label>
+                                                    <label for="select">Qty</label>
 
-                                            &nbsp;
+                                                    &nbsp;
 
-                                            <select id="">
+                                                    <select id="">
 
-                                                <option selected>
+                                                        <option selected>
 
-                                                    {{ item.qty }}
+                                                            {{ item.qty }}
 
-                                                </option>
+                                                        </option>
 
-                                                <option value="">1</option>
+                                                        <option value="">1</option>
 
-                                                <option value="">2</option>
+                                                        <option value="">2</option>
 
-                                                <option value="">3</option>
+                                                        <option value="">3</option>
 
-                                                <option value="">4</option>
+                                                        <option value="">4</option>
 
-                                            </select>
+                                                    </select>
 
-                                            <br> <br>
+                                                    <br> <br>
 
-                                            <button type="button" id="update-button"
-                                                    class="btn btn-primary btn-sm update-button">
-                                                Update
+                                                    <button type="button" id="update-button"
+                                                            class="btn btn-primary btn-sm update-button">
+                                                        Update
 
-                                            </button>
+                                                    </button>
 
-                                            &nbsp;
+                                                    &nbsp;
 
-                                            <button type="button" id="delete-button"
-                                                    class="btn btn-danger btn-sm delete-button">
-                                                Delete
+                                                    <button type="button" id="delete-button"
+                                                            class="btn btn-danger btn-sm delete-button">
+                                                        Delete
 
-                                            </button>
+                                                    </button>
 
+
+                                                </div>
+
+                                            </div>
 
                                         </div>
 
@@ -108,22 +135,17 @@
                                 </div>
 
                             </div>
+                        {% endwith %}
 
-                        </div>
+                    {% endfor %}
+                {% endif %}
 
-                    </div>
-                {% endwith %}
-
-            {% endfor %}
-
-            {# end loop #}
-
+            {% endwith %}
             <div class="col-12 text-end">
 
                 <div class="h6 fw-bold"> Sub total:&nbsp;
                     <div id="total" class="d-inline-flex"> {{ cart.get_total }} </div>
                 </div>
-
             </div>
 
             </div>
@@ -168,7 +190,6 @@
             });
         });
     </script>
-
 
 {% endblock %}
 
