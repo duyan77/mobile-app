@@ -10,10 +10,16 @@ urlpatterns = [
 	path('delete/', views.cart_delete, name='cart-delete'),
 
 	path('update/', views.cart_update, name='cart-update'),
-    #Phúc Tấn 03/11 Thêm các url cần thiết cho trang thanh toán
-    path('webhook/', views.stripe_webhook, name='stripe_webhook'),
-    path('success/', views.success, name='success'),
-    path('cancel/', views.cancel, name='cancel'),
-    path('list_successful_payments/', views.list_successful_payments, name='list_successful_payments'),
-    path('create-checkout-session/', views.create_checkout_session, name='create-checkout-session'),
+
+	# Phúc Tấn 03/11 Thêm các url cần thiết cho trang thanh toán
+	path('webhook/', views.stripe_webhook, name='stripe_webhook'),
+
+	path('success/', views.success, name='success'),
+
+	path('cancel/', views.cancel, name='cancel'),
+
+	path('list_successful_payments/', views.list_successful_payments,
+		 name='list_successful_payments'),
+
+	path('create-checkout-session/', views.create_checkout_session, name='create-checkout-session'),
 ]
