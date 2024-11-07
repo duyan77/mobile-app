@@ -126,11 +126,10 @@
 
             {% if user.is_authenticated %}
                 <li class="nav-item">
-
                     <a class="btn btn-alert navbar-btn text-white" type="button" href="/profile">
                         {% if user.avatar_url %}
                             <img src="{{ user.avatar_url }}" class="rounded-circle" width="30"
-                                 height="30">
+                                 height="30" alt="">
                         {% else %}
                             <i class="fa fa-user" aria-hidden="true"></i>
                         {% endif %}
