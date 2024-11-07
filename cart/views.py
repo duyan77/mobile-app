@@ -14,7 +14,8 @@ from .cart import Cart
 
 stripe.api_key = 'sk_test_51QH2duG6ioceCuONjBIvdJJCSr8z7Lo7s0vRd8eDQT0iAZh9i5qpQTbUdKW3RjooRKWwfPbR2a74UIsEb9dQaBfs00PRwhWbI3'
 STRIPE_WEBHOOK_SECRET = 'whsec_YJzSC35dyMSepBg5364vlk5aaR0KkBUA'
-api_key = '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'
+api_key = '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'
+
 
 
 # acct_1QH2duG6ioceCuON
