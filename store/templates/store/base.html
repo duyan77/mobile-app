@@ -19,9 +19,11 @@
 
     <link rel="stylesheet" href="https://bootswatch.com/5/flatly/bootstrap.min.css">
 
-    <link rel="stylesheet"
-          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    {#    <link rel="stylesheet"#}
+    {#          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">#}
 
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+          rel="stylesheet">
 
     <!-- JavaScript -->
 
@@ -123,40 +125,44 @@
 
 
             {% if user.is_authenticated %}
-            <li class="nav-item">
+                <li class="nav-item">
 
-                <a class="btn btn-alert navbar-btn text-white" type="button" href="/profile"> 
-                    {% if user.avatar_url %}
-                        <img src="{{ user.avatar_url }}" class="rounded-circle" width="30" height="30">
-                    {% else %}
-                        <i class="fa fa-user" aria-hidden="true"></i>
-                    {% endif %}
+                    <a class="btn btn-alert navbar-btn text-white" type="button" href="/profile">
+                        {% if user.avatar_url %}
+                            <img src="{{ user.avatar_url }}" class="rounded-circle" width="30"
+                                 height="30">
+                        {% else %}
+                            <i class="fa fa-user" aria-hidden="true"></i>
+                        {% endif %}
 
-                    Chào {{user.first_name}} 
-                </a>
+                        Chào {{ user.first_name }}
+                    </a>
 
-            </li>
+                </li>
 
-            <li class="nav-item">
+                <li class="nav-item">
 
-                <a class="btn btn-alert navbar-btn text-white" type="button" href="/logout"> Logout </a>
-            
-            </li>
+                    <a class="btn btn-alert navbar-btn text-white" type="button" href="/logout">
+                        Logout </a>
+
+                </li>
             {% else %}
 
-            <li class="nav-item">
+                <li class="nav-item">
 
-                <a class="btn btn-alert navbar-btn text-white" type="button" href="/signup"> Register </a>
+                    <a class="btn btn-alert navbar-btn text-white" type="button" href="/signup">
+                        Register </a>
 
-            </li>
+                </li>
 
 
-            <li class="nav-item">
+                <li class="nav-item">
 
-                <a class="btn btn-alert navbar-btn text-white" type="button" href="/login"> Login </a>
+                    <a class="btn btn-alert navbar-btn text-white" type="button" href="/login">
+                        Login </a>
 
-            </li>
-                
+                </li>
+
             {% endif %}
 
             &nbsp; &nbsp; &nbsp;
@@ -164,8 +170,22 @@
 
             <li class="nav-item">
 
-                <a type="button" role="button" href="{% url 'cart-summary' %}" class="btn btn-outline-secondary">
+                <a type="button" role="button" href="{% url 'cart-summary' %}"
+                   class="btn btn-outline-secondary" id="cart-btn">
+
                     <i class="fa fa-shopping-cart" aria-hidden="true"> </i>
+
+                    &nbsp;
+
+                    <div id="cart-qty" class="d-inline-flex">
+                        {% with qty_amount=cart|length %}
+                            {% if qty_amount > 0 %}
+                                {{ qty_amount }}
+                            {% else %}
+                                0
+                            {% endif %}
+                        {% endwith %}
+                    </div>
                 </a>
 
             </li>
