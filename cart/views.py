@@ -206,8 +206,8 @@ def create_checkout_session(request):
 				payment_method_types=['card'],
 				line_items=line_items,
 				mode='payment',
-				success_url='https://5ebe-116-102-187-99.ngrok-free.app/cart/success/',
-				cancel_url='https://5ebe-116-102-187-99.ngrok-free.app/cart/cancel/',
+				success_url='https://antoanthongtin.online/cart/success/',
+				cancel_url='https://antoanthongtin.online/cart/cancel/',
 				customer_email=request.POST.get('email'),  # Lấy email từ request
 				billing_address_collection='required',  # Bắt buộc địa chỉ thanh toán
 			)
