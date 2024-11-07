@@ -30,7 +30,14 @@ def cart_add(request):
 
 
 def cart_delete(request):
-	pass
+	cart = Cart(request)
+	if request.POST.get('action') == 'post':
+		product_id = request.POST.get('product_id')
+		cart.delete(product=product_id)
+		cart_quantity = cart.__len__()
+		cart_total = cart.get_total()
+		response = JsonResponse({'qty': cart_quantity, 'total': cart_total})
+		return response
 
 
 # Phúc Tấn Thêm Hàm xử lý thanh toán
@@ -75,6 +82,3 @@ def create_checkout_session(request):
 def cart_update(request):
 	pass
 
-
-def cart_empty(request):
-	return render(request, 'cart/cart-empty.html')

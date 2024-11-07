@@ -43,6 +43,7 @@ INSTALLED_APPS = [
 	'allauth.account',
 	'allauth.socialaccount',
 	'allauth.socialaccount.providers.google',
+	'mathfilters',  # thêm thư viện mathfilters
 ]
 
 MIDDLEWARE = [
@@ -91,7 +92,6 @@ DATABASES = {
 		'NAME': BASE_DIR / 'db.sqlite3',
 	}
 }
-
 
 # RDS database configuration settings
 # DATABASES = {
