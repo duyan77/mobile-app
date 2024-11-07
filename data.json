@@ -1236,7 +1236,7 @@
         }
     },
     {
-        "model": "store.productImage",
+        "model": "store.productimage",
         "pk": 1,
         "fields": {
             "product_id": 1,
@@ -1245,7 +1245,7 @@
         }
     },
     {
-        "model": "store.productImage",
+        "model": "store.productimage",
         "pk": 2,
         "fields": {
             "product_id": 1,
@@ -1254,7 +1254,7 @@
         }
     },
     {
-        "model": "store.productImage",
+        "model": "store.productimage",
         "pk": 3,
         "fields": {
             "product_id": 1,
@@ -1263,7 +1263,7 @@
         }
     },
     {
-        "model": "store.productImage",
+        "model": "store.productimage",
         "pk": 4,
         "fields": {
             "product_id": 1,
@@ -1272,7 +1272,7 @@
         }
     },
     {
-        "model": "store.productImage",
+        "model": "store.productimage",
         "pk": 5,
         "fields": {
             "product_id": 1,
@@ -1281,7 +1281,7 @@
         }
     },
     {
-        "model": "store.productImage",
+        "model": "store.productimage",
         "pk": 6,
         "fields": {
             "product_id": 1,
@@ -1290,7 +1290,7 @@
         }
     },
     {
-        "model": "store.productImage",
+        "model": "store.productimage",
         "pk": 7,
         "fields": {
             "product_id": 1,
@@ -1299,7 +1299,7 @@
         }
     },
     {
-        "model": "store.productImage",
+        "model": "store.productimage",
         "pk": 8,
         "fields": {
             "product_id": 2,
@@ -1308,7 +1308,7 @@
         }
     },
     {
-        "model": "store.productImage",
+        "model": "store.productimage",
         "pk": 9,
         "fields": {
             "product_id": 2,
@@ -1317,7 +1317,7 @@
         }
     },
     {
-        "model": "store.productImage",
+        "model": "store.productimage",
         "pk": 10,
         "fields": {
             "product_id": 2,
@@ -1326,7 +1326,7 @@
         }
     },
     {
-        "model": "store.productImage",
+        "model": "store.productimage",
         "pk": 11,
         "fields": {
             "product_id": 2,
@@ -1335,7 +1335,7 @@
         }
     },
     {
-        "model": "store.productImage",
+        "model": "store.productimage",
         "pk": 12,
         "fields": {
             "product_id": 2,
@@ -1344,7 +1344,7 @@
         }
     },
     {
-        "model": "store.productImage",
+        "model": "store.productimage",
         "pk": 13,
         "fields": {
             "product_id": 2,
@@ -1353,7 +1353,7 @@
         }
     },
     {
-        "model": "store.productImage",
+        "model": "store.productimage",
         "pk": 14,
         "fields": {
             "product_id": 3,
@@ -1362,7 +1362,7 @@
         }
     },
     {
-        "model": "store.productImage",
+        "model": "store.productimage",
         "pk": 15,
         "fields": {
             "product_id": 3,
@@ -1371,7 +1371,7 @@
         }
     },
     {
-        "model": "store.productImage",
+        "model": "store.productimage",
         "pk": 16,
         "fields": {
             "product_id": 3,
@@ -1380,7 +1380,7 @@
         }
     },
     {
-        "model": "store.productImage",
+        "model": "store.productimage",
         "pk": 17,
         "fields": {
             "product_id": 3,
@@ -1389,7 +1389,7 @@
         }
     },
     {
-        "model": "store.productImage",
+        "model": "store.productimage",
         "pk": 18,
         "fields": {
             "product_id": 3,
@@ -1398,7 +1398,7 @@
         }
     },
     {
-        "model": "store.productImage",
+        "model": "store.productimage",
         "pk": 19,
         "fields": {
             "product_id": 3,
@@ -1407,7 +1407,7 @@
         }
     },
     {
-        "model": "store.productImage",
+        "model": "store.productimage",
         "pk": 20,
         "fields": {
             "product_id": 4,
@@ -1416,7 +1416,7 @@
         }
     },
     {
-        "model": "store.productImage",
+        "model": "store.productimage",
         "pk": 21,
         "fields": {
             "product_id": 4,
@@ -1425,7 +1425,7 @@
         }
     },
     {
-        "model": "store.productImage",
+        "model": "store.productimage",
         "pk": 22,
         "fields": {
             "product_id":4,
@@ -1434,7 +1434,7 @@
         }
     },
     {
-        "model": "store.productImage",
+        "model": "store.productimage",
         "pk": 23,
         "fields": {
             "product_id": 4,
@@ -1443,7 +1443,7 @@
         }
     },
     {
-        "model": "store.productImage",
+        "model": "store.productimage",
         "pk": 24,
         "fields": {
             "product_id": 4,
@@ -1452,7 +1452,7 @@
         }
     },
     {
-        "model": "store.productImage",
+        "model": "store.productimage",
         "pk": 25,
         "fields": {
             "product_id": 5,
@@ -1461,7 +1461,7 @@
         }
     },
     {
-        "model": "store.productImage",
+        "model": "store.productimage",
         "pk": 26,
         "fields": {
             "product_id": 5,
@@ -1470,7 +1470,7 @@
         }
     },
     {
-        "model": "store.productImage",
+        "model": "store.productimage",
         "pk": 27,
         "fields": {
             "product_id": 5,
@@ -1479,7 +1479,7 @@
         }
     },
     {
-        "model": "store.productImage",
+        "model": "store.productimage",
         "pk": 28,
         "fields": {
             "product_id": 5,
@@ -1488,7 +1488,7 @@
         }
     },
     {
-        "model": "store.productImage",
+        "model": "store.productimage",
         "pk": 29,
         "fields": {
             "product_id": 5,
@@ -1497,7 +1497,7 @@
         }
     },
     {
-        "model": "store.productImage",
+        "model": "store.productimage",
         "pk": 30,
         "fields": {
             "product_id": 5,
@@ -1506,7 +1506,7 @@
         }
     },
     {
-        "model": "store.productImage",
+        "model": "store.productimage",
         "pk": 31,
         "fields": {
             "product_id": 5,
@@ -1515,7 +1515,7 @@
         }
     },
     {
-        "model": "store.productImage",
+        "model": "store.productimage",
         "pk": 32,
         "fields": {
             "product_id": 5,
@@ -1524,7 +1524,7 @@
         }
     },
     {
-        "model": "store.productImage",
+        "model": "store.productimage",
         "pk": 33,
         "fields": {
             "product_id": 6,
@@ -1533,7 +1533,7 @@
         }
     },
     {
-        "model": "store.productImage",
+        "model": "store.productimage",
         "pk": 34,
         "fields": {
             "product_id": 6,
@@ -1542,7 +1542,7 @@
         }
     },
     {
-        "model": "store.productImage",
+        "model": "store.productimage",
         "pk": 35,
         "fields": {
             "product_id": 6,
@@ -1551,7 +1551,7 @@
         }
     },
     {
-        "model": "store.productImage",
+        "model": "store.productimage",
         "pk": 36,
         "fields": {
             "product_id": 6,
@@ -1560,7 +1560,7 @@
         }
     },
     {
-        "model": "store.productImage",
+        "model": "store.productimage",
         "pk": 37,
         "fields": {
             "product_id": 6,
@@ -1569,7 +1569,7 @@
         }
     },
     {
-        "model": "store.productImage",
+        "model": "store.productimage",
         "pk": 38,
         "fields": {
             "product_id": 6,
@@ -1578,7 +1578,7 @@
         }
     },
     {
-        "model": "store.productImage",
+        "model": "store.productimage",
         "pk": 39,
         "fields": {
             "product_id": 7,
@@ -1587,7 +1587,7 @@
         }
     },
     {
-        "model": "store.productImage",
+        "model": "store.productimage",
         "pk": 40,
         "fields": {
             "product_id": 7,
@@ -1596,7 +1596,7 @@
         }
     },
     {
-        "model": "store.productImage",
+        "model": "store.productimage",
         "pk": 41,
         "fields": {
             "product_id": 7,
@@ -1605,7 +1605,7 @@
         }
     },
     {
-        "model": "store.productImage",
+        "model": "store.productimage",
         "pk": 42,
         "fields": {
             "product_id": 7,
@@ -1614,7 +1614,7 @@
         }
     },
     {
-        "model": "store.productImage",
+        "model": "store.productimage",
         "pk": 43,
         "fields": {
             "product_id": 7,
@@ -1623,7 +1623,7 @@
         }
     },
     {
-        "model": "store.productImage",
+        "model": "store.productimage",
         "pk": 44,
         "fields": {
             "product_id": 8,
@@ -1632,7 +1632,7 @@
         }
     },
     {
-        "model": "store.productImage",
+        "model": "store.productimage",
         "pk": 45,
         "fields": {
             "product_id": 8,
@@ -1641,7 +1641,7 @@
         }
     },
     {
-        "model": "store.productImage",
+        "model": "store.productimage",
         "pk": 46,
         "fields": {
             "product_id": 8,
@@ -1650,7 +1650,7 @@
         }
     },
     {
-        "model": "store.productImage",
+        "model": "store.productimage",
         "pk": 47,
         "fields": {
             "product_id": 8,
@@ -1659,7 +1659,7 @@
         }
     },
     {
-        "model": "store.productImage",
+        "model": "store.productimage",
         "pk": 48,
         "fields": {
             "product_id": 8,
@@ -1668,7 +1668,7 @@
         }
     },
     {
-        "model": "store.productImage",
+        "model": "store.productimage",
         "pk": 49,
         "fields": {
             "product_id": 8,
@@ -1677,7 +1677,7 @@
         }
     },
     {
-        "model": "store.productImage",
+        "model": "store.productimage",
         "pk": 50,
         "fields": {
             "product_id": 8,

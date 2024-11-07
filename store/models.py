@@ -82,7 +82,7 @@ class ProductDetail(models.Model):
 	ram = models.CharField(max_length=255)
 	storage = models.CharField(max_length=255)
 	price = models.DecimalField(max_digits=60, decimal_places=2)
-	quantity = models.IntegerField()
+	quantity = models.IntegerField(default=20, null=True)
 
 	def __str__(self):
 		return self.product.title
