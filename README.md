@@ -79,4 +79,4 @@ This is a Django-based web application for a mobile store.
 
 ## License
 
-This project is licensed under the MIT License.# mobile-app
+Updating...
