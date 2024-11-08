@@ -47,14 +47,16 @@ class Brand(models.Model):
 	def get_absolute_url(self):
 		return reverse('list-brand', args=[self.slug])
 
+
 class Product(models.Model):
 	id = models.AutoField(primary_key=True)
-	category = models.ForeignKey(Category, related_name='products', on_delete=models.CASCADE,null=True)  
-	brand = models.ForeignKey(Brand, related_name='products', on_delete=models.CASCADE,null=True)
+	category = models.ForeignKey(Category, related_name='products', on_delete=models.CASCADE,
+								 null=True)
+	brand = models.ForeignKey(Brand, related_name='products', on_delete=models.CASCADE, null=True)
 	title = models.CharField(max_length=255)
 	description = models.TextField(blank=True)
 	slug = models.SlugField(max_length=255, unique=True)
-	
+
 	class Meta:
 		verbose_name_plural = 'products'
 
@@ -63,6 +65,7 @@ class Product(models.Model):
 
 	def get_absolute_url(self):
 		return reverse('product-info', args=[self.slug])
+
 
 class ProductInfo(models.Model):
 	id = models.OneToOneField(Product, primary_key=True, on_delete=models.CASCADE)
@@ -74,7 +77,8 @@ class ProductInfo(models.Model):
 
 	def __str__(self):
 		return self.product.title
-	
+
+
 class ProductDetail(models.Model):
 	id = models.AutoField(primary_key=True)
 	product_id = models.ForeignKey(Product, related_name='details', on_delete=models.CASCADE)
@@ -86,9 +90,10 @@ class ProductDetail(models.Model):
 
 	def get_formatted_price(self):
 		return "{:,.0f} VND".format(self.price)
-	
+
 	def __str__(self):
 		return self.product.title
+
 
 class ProductImage(models.Model):
 	id = models.AutoField(primary_key=True)
@@ -98,9 +103,8 @@ class ProductImage(models.Model):
 
 	def __str__(self):
 		return self.product.title
-	
 
-	
+
 class Review(models.Model):
 	id = models.AutoField(primary_key=True)
 	product_id = models.ForeignKey(Product, related_name='reviews', on_delete=models.CASCADE)
@@ -111,7 +115,8 @@ class Review(models.Model):
 
 	def __str__(self):
 		return self.product.title
-	
+
+
 class Cart(models.Model):
 	id = models.AutoField(primary_key=True)
 	user_id = models.ForeignKey(User, related_name='carts', on_delete=models.CASCADE)
@@ -119,18 +124,19 @@ class Cart(models.Model):
 
 	def __str__(self):
 		return self.user.username
-	
+
+
 class CartItem(models.Model):
 	id = models.AutoField(primary_key=True)
 	cart_id = models.ForeignKey(Cart, related_name='items', on_delete=models.CASCADE)
-	product_detail_id = models.ForeignKey(ProductDetail, related_name='cart_items', on_delete=models.CASCADE)
+	product_detail_id = models.ForeignKey(ProductDetail, related_name='cart_items',
+										  on_delete=models.CASCADE)
 	quantity = models.IntegerField()
-
-	
 
 	def __str__(self):
 		return self.product.title
-	
+
+
 class Order(models.Model):
 	id = models.AutoField(primary_key=True)
 	user_id = models.ForeignKey(User, related_name='orders', on_delete=models.CASCADE)
@@ -142,11 +148,13 @@ class Order(models.Model):
 
 	def __str__(self):
 		return self.user.username
-	
+
+
 class OrderItem(models.Model):
 	id = models.AutoField(primary_key=True)
 	order_id = models.ForeignKey(Order, related_name='items', on_delete=models.CASCADE)
-	product_detail_id = models.ForeignKey(ProductDetail, related_name='order_items', on_delete=models.CASCADE)
+	product_detail_id = models.ForeignKey(ProductDetail, related_name='order_items',
+										  on_delete=models.CASCADE)
 	quantity = models.IntegerField()
 
 	def __str__(self):
