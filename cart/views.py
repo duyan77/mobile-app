@@ -215,3 +215,45 @@ def create_checkout_session(request):
 		except stripe.error.StripeError as e:
 			return JsonResponse({'error': str(e)})
 	return JsonResponse({'error': 'Invalid request'}, status=400)
+
+
+@csrf_exempt
+def cart_buy_now(request):
+	if request.method == 'POST' and request.POST.get('action') == 'post':
+		# Lấy product_id và quantity từ request
+		product_id = int(request.POST.get('product_id'))
+		qty = int(request.POST.get('product_quantity'))
+
+		# Lấy sản phẩm từ product_id
+		product = get_object_or_404(Product, id=product_id)
+
+		# Chuẩn bị các thông tin dòng sản phẩm cho Stripe Checkout
+		line_items = [
+			{
+				'price_data': {
+					'currency': 'usd',
+					'product_data': {
+						'name': product.title,
+						'description': product.description,
+					},
+					'unit_amount': int(product.price * Decimal(1)),  # Giá sản phẩm (cents)
+				},
+				'quantity': qty,
+			}
+		]
+
+		# Tạo phiên thanh toán
+		try:
+			checkout_session = stripe.checkout.Session.create(
+				payment_method_types=['card'],
+				line_items=line_items,
+				mode='payment',
+				success_url='https://5ebe-116-102-187-99.ngrok-free.app/cart/success/',
+				cancel_url='https://5ebe-116-102-187-99.ngrok-free.app/cart/cancel/',
+				billing_address_collection='required',  # Bắt buộc địa chỉ thanh toán
+			)
+			# Trả về URL của phiên thanh toán dưới dạng JSON
+			return JsonResponse({'url': checkout_session.url})
+		except stripe.error.StripeError as e:
+			return JsonResponse({'error': str(e)})
+	return JsonResponse({'error': 'Invalid request'}, status=400)

@@ -43,7 +43,9 @@ class Cart:
 	def __iter__(self):
 		all_products_ids = self.cart.keys()
 		products = Product.objects.filter(id__in=all_products_ids)
-		cart = self.cart.copy()
+
+		import copy
+		cart = copy.deepcopy(self.cart)
 
 		for product in products:
 			cart[str(product.id)]['product'] = product
@@ -55,4 +57,4 @@ class Cart:
 
 	def get_total(self):
 		total = sum(Decimal(item['price']) * item['qty'] for item in self.cart.values())
-		return f"{total:,.0f}₫"
+		return total

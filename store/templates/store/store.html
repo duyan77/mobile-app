@@ -1,4 +1,5 @@
 {% extends "./base.html" %}
+{% load currency_filters %}
 
 {% load static %}
 
@@ -49,7 +50,7 @@
                                         {{ product.title | capfirst }}
                                     </p>
                                     <div class="d-flex justify-content-between align-items-center">
-                                        <h5>{{ product.formatted_price }}</h5>
+                                        <h5>{{ product.price|currency }}</h5>
                                     </div>
                                 </div>
                             </div>

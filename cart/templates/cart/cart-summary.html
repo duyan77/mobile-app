@@ -2,6 +2,8 @@
 
 {% load static %}
 {% load mathfilters %}
+{% load currency_filters %}
+
 
 {% block content %}
     <style>
@@ -71,8 +73,7 @@
 
                                                 <div class="col-6 text-end">
                                                     <span class="h6 fw-bold">
-                                                        {{ product.formatted_price }}
-{#                                                        product.price|mul:item.qty #}
+                                                        {{product.price|mul:item.qty|currency}}
                                                     </span>
                                                 </div>
 
@@ -90,25 +91,30 @@
 
                                                     &nbsp;
 
-                                                    <select class="quantity-select"
-                                                            data-product-id="{{ product.id }}">
+                                                    <label>
+                                                        <select class="quantity-select"
+                                                                data-product-id="{{ product.id }}"
+                                                                id="select{{ product.id }}">
+                                                        >
 
-                                                        <option selected>{{ item.qty }}</option>
+                                                            <option selected>{{ item.qty }}</option>
 
-                                                        <option value="1">1</option>
+                                                            <option value="1">1</option>
 
-                                                        <option value="2">2</option>
+                                                            <option value="2">2</option>
 
-                                                        <option value="3">3</option>
+                                                            <option value="3">3</option>
 
-                                                        <option value="4">4</option>
+                                                            <option value="4">4</option>
 
-                                                    </select>
+                                                        </select>
+                                                    </label>
 
                                                     <br> <br>
 
-                                                    <button type="button" data-index="update-button"
-                                                            class="btn btn-primary btn-sm update-button">
+                                                    <button type="button"
+                                                            data-index="{{ product.id }}"
+                                                            class="btn btn-primary btn-sm buy-now">
                                                         Buy now
                                                     </button>
 
@@ -118,9 +124,7 @@
                                                             data-index="{{ product.id }}"
                                                             class="btn btn-danger btn-sm delete-button">
                                                         Delete
-
                                                     </button>
-
 
                                                 </div>
 
@@ -154,7 +158,7 @@
 
                     <div class="col-auto text-end">
                         <div class="h6 fw-bold d-inline">Sub total:&nbsp;</div>
-                        <div id="total" class="d-inline">{{ cart.get_total }}</div>
+                        <div id="total" class="d-inline">{{ cart.get_total|currency }}</div>
                     </div>
                 </div>
             </div>
@@ -208,7 +212,6 @@
                 success: function (json) {
                     location.reload();
                     document.getElementById("cart-qty").textContent = json.qty;
-                    location.reload();
                 },
                 error: function (xhr) {
                     console.log(xhr.status + ": " + xhr.responseText);
@@ -237,15 +240,40 @@
                     },
                     success: function (json) {
                         location.reload();
-                        console.log(json);
                         document.getElementById("cart-qty").textContent = json.qty;
                         document.getElementById("total").textContent = json.total;
                     },
-                    error: function (error) {
+                    error: function () {
                         console.log("Có lỗi xảy ra khi cập nhật giỏ hàng");
                     }
                 });
             }
+        });
+
+        {#buy now button#}
+        $(document).on('click', '.buy-now', function (e) {
+            e.preventDefault();
+            let productId = $(this).data('index');
+            $.ajax({
+                type: 'POST',
+                url: "{% url 'cart-buy-now' %}",
+                data: {
+                    'product_id': productId,
+                    'product_quantity': $(`#select${productId}`).val(),
+                    'csrfmiddlewaretoken': '{{ csrf_token }}',
+                    'action': 'post'
+                },
+                success: function (json) {
+                 if (json.url)
+                    // Chuyển hướng đến URL thanh toán Stripe
+                    window.location.href = json.url;
+                 else
+                    console.log(`productId: ${json.product}, qty: ${json.qty}`);
+            },
+                error: function (xhr) {
+                    console.log(xhr.status + ": " + xhr.responseText);
+                }
+            });
         });
     </script>
 

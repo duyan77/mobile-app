@@ -52,6 +52,7 @@ INSTALLED_APPS = [
 	'allauth.socialaccount',
 	'allauth.socialaccount.providers.google',
 	'mathfilters',  # thêm thư viện mathfilters
+	'common.apps.CommonConfig',  # thêm app common
 ]
 
 MIDDLEWARE = [
