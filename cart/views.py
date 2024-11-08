@@ -182,7 +182,7 @@ def list_produc(request):
 	for item in cart_instance:
 		list_item.append({
 			'price_data': {
-				'currency': 'usd',
+				'currency': 'vnd',
 				'product_data': {
 					'name': item['product'].title,  # Tên sản phẩm từ giỏ hàng
 					'description': item['product'].description,
@@ -231,7 +231,7 @@ def cart_buy_now(request):
 		line_items = [
 			{
 				'price_data': {
-					'currency': 'usd',
+					'currency': 'vnd',
 					'product_data': {
 						'name': product.title,
 						'description': product.description,
