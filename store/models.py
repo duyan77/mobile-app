@@ -84,14 +84,17 @@ class ProductDetail(models.Model):
 	price = models.DecimalField(max_digits=60, decimal_places=2)
 	quantity = models.IntegerField(default=20, null=True)
 
+	def get_formatted_price(self):
+		return "{:,.0f} VND".format(self.price)
+	
 	def __str__(self):
 		return self.product.title
 
 class ProductImage(models.Model):
 	id = models.AutoField(primary_key=True)
-	product_id = models.ForeignKey(Product, related_name='images', on_delete=models.CASCADE)
+	product_id = models.ForeignKey(Product, on_delete=models.CASCADE)
 	image = models.ImageField(upload_to='images/')
-	product_detail_id = models.ForeignKey(ProductDetail, related_name='images', on_delete=models.CASCADE, null=True)
+	product_detail_id = models.ForeignKey(ProductDetail, on_delete=models.CASCADE, null=True)
 
 	def __str__(self):
 		return self.product.title

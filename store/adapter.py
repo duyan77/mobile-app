@@ -8,6 +8,9 @@ from allauth.core.exceptions import ImmediateHttpResponse
 class NoSignupAccountAdapter(DefaultAccountAdapter):
     def is_open_for_signup(self, request):
         return True
+    
+    
+
 
 class NoSignupSocialAccountAdapter(DefaultSocialAccountAdapter):
     def is_open_for_signup(self, request, sociallogin):
