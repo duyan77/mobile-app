@@ -4,6 +4,10 @@
 
 {% block content %}
 <style>
+    body {
+        background-color: #E0E0E0;
+    }
+
     .col {
         transition: transform 0.3s ease;
     }
@@ -14,15 +18,43 @@
 
     .slideshow-container {
         position: relative;
-        margin: auto;
-        background-color: aqua;
+        width: 80%;
+        margin: 0 auto;
         overflow: hidden;
     }
 
+    #banner {
+        width: 100%;
+        max-width: 1300px;
+        margin: 0 auto;
+    }
+
+    /* Điều chỉnh các nút điều hướng */
+    #banner .prev,
+    #banner .next {
+        top: 50%;
+        transform: translateY(-50%);
+    }
+
+    /* Đảm bảo hình ảnh chiếm hết chiều rộng của banner */
+    #banner .mySlides img {
+        width: 100%;
+    }
+
+
     .mySlides {
         display: none;
-        transition: transform 0.5s ease;
+        position: relative;
+        width: 100%;
+        transition: transform 1s ease;
+        /* Hiệu ứng trượt ngang */
     }
+
+    .mySlides img {
+        width: 100%;
+        display: block;
+    }
+
 
 
     .prev,
@@ -50,46 +82,155 @@
     .next:hover {
         background-color: rgba(0, 0, 0, 0.8);
     }
+
+    .snowflake {
+        position: fixed;
+        top: -10px;
+        width: 10px;
+        height: 10px;
+        background: white;
+        border-radius: 50%;
+        opacity: 0.8;
+        pointer-events: none;
+        animation: fall linear infinite;
+    }
+
+    @keyframes fall {
+        to {
+            transform: translateY(100vh);
+        }
+    }
+
+    /* ////////////////////////////test////////////////////////////////////////////////// */
+    /* Comments Section */
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    .comments-section {
+        max-width: 1200px;
+        margin: 20px auto;
+        padding: 20px;
+    }
+
+    h3 {
+        margin-bottom: 20px;
+        font-size: 24px;
+    }
+
+    .comments-layout {
+        display: flex;
+        gap: 30px;
+    }
+
+    .new-comment-form {
+        width: 33%;
+        position: sticky;
+        top: 20px;
+        background: white;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    .comment-input {
+        width: 100%;
+        min-height: 200px;
+        padding: 12px;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        margin-bottom: 15px;
+        resize: none;
+        font-family: inherit;
+    }
+
+    .btn-submit-comment {
+        width: 100%;
+        padding: 10px;
+        background-color: #007bff;
+        color: white;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+    }
+
+    .btn-submit-comment:hover {
+        background-color: #0056b3;
+    }
+
+    .comments-container {
+        width: 67%;
+    }
+
+    .comment-card {
+        background: white;
+        padding: 15px;
+        margin-bottom: 15px;
+        border-radius: 8px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    .comment-content {
+        margin-bottom: 10px;
+        line-height: 1.5;
+    }
+
+    .comment-time {
+        color: #666;
+        font-size: 14px;
+    }
+
+    @media (max-width: 768px) {
+        .comments-layout {
+            flex-direction: column;
+        }
+
+        .new-comment-form,
+        .comments-container {
+            width: 100%;
+        }
+
+        .new-comment-form {
+            position: static;
+        }
+    }
 </style>
-<!-- picture section -->
-<div class="slideshow-container">
+<!-- banner section -->
+<div class="slideshow-container mt-5 pt-4" id="banner">
     <div class="mySlides">
-        <img src="{% static 'media/images/ip.jpg' %}" style="width:100%">
+        <img src="{% static 'media/images/ip2.jpg' %}" style="width:100%">
     </div>
-
     <div class="mySlides">
-        <img src="{% static 'media/images/lap.jpg' %}" style="width:100%">
+        <img src="{% static 'media/images/lap2.jpg' %}" style="width:100%">
     </div>
-
     <div class="mySlides">
-        <img src="{% static 'media/images/ss.jpg' %}" style="width:100%">
+        <img src="{% static 'media/images/ss2.jpg' %}" style="width:100%">
     </div>
-
-    <div class="mySlides">
-        <img src="{% static 'media/images/ipad.jpg' %}" style="width:100%">
-    </div>
-
-    <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
-    <a class="next" onclick="plusSlides(1)">&#10095;</a>
+    <a class="prev" onclick="changeSlide(-1)">&#10094;</a>
+    <a class="next" onclick="changeSlide(1)">&#10095;</a>
 </div>
+
+
 
 <!-- Introduction section -->
 <section class="py-4 text-center container ">
     <div class="row py-lg-5">
         <div class="col-lg-6 col-md-8 mx-auto">
             <h4> Welcome to Mobile Store.</h4>
-            <br>
             <p class="lead text-muted">
                 Find the best mobile phones and accessories here.
+            </p>
+            <p class="lead text-muted">
+                Developed and implemented in the Information System Security subject
             </p>
             <br>
             <a href="#" class="btn btn-primary my-2"> Shop Now </a>
         </div>
     </div>
 </section>
-
-
-
 
 <!-- All products section -->
 <div class="album py-5 bg-light">
@@ -101,7 +242,7 @@
             {% for product in all_products %}
             <div class="col">
                 <div class="card shadow-sm d-flex flex-column h-100">
-                    <img class="img-fluid" alt="{{ product.title }}" src="{{ product.image.url }}">
+                    <img class="img-fluid pt-2" alt="{{ product.title }}" src="{{ product.image.url }}">
                     <div class="card-body mt-auto">
                         <p class="card-text">
                             <a class="text-info text-decoration-none" href="{{ product.get_absolute_url }}">
@@ -119,47 +260,103 @@
     </div>
 </div>
 
-<!-- <script>
-    let slideIndex = 1;
-    showSlides(slideIndex);
+<!-- HTML -->
+<section class="comments-section">
+    <h3>Comments</h3>
+    <div class="comments-layout">
+        <!-- Left Column - Comment Form -->
+        <div class="new-comment-form">
+            <textarea id="comment-input" placeholder="Write a comment..." class="comment-input"></textarea>
+            <button id="btn-submit-comment" class="btn-submit-comment">Submit</button>
+        </div>
 
-    function plusSlides(n) {
-        showSlides(slideIndex += n);
-    }
+        <!-- Right Column - Comments Display -->
+        <div class="comments-container" id="comments-container">
+            <!-- Comments will be added here -->
+        </div>
+    </div>
+</section>
 
-    function showSlides(n) {
-        let i;
-        let slides = document.getElementsByClassName("mySlides");
-        if (n > slides.length) { slideIndex = 1 }
-        if (n < 1) { slideIndex = slides.length }
-        for (i = 0; i < slides.length; i++) {
-            slides[i].style.display = "none";
-        }
-        slides[slideIndex - 1].style.display = "block";
-    }
-</script> -->
 <script>
-    let slideIndex = 0;
-    let slides = document.getElementsByClassName("mySlides");
+    const createSnowflake = () => {
+        const banner = document.getElementById('banner');
+        const snowflake = document.createElement('div');
+        snowflake.classList.add('snowflake');
+        snowflake.style.left = `${Math.random() * banner.clientWidth}px`;
+        snowflake.style.animationDuration = `${Math.random() * 3 + 2}s`;
+        snowflake.style.opacity = Math.random();
+        snowflake.style.fontSize = `${Math.random() * 10 + 10}px`;
+        banner.appendChild(snowflake);
 
-    function showSlides(n) {
+        setTimeout(() => { snowflake.remove(); }, 5000);
+    }
+    setInterval(createSnowflake, 100);
+
+
+    let slideIndex = 0;
+    let slideInterval;
+
+    function showSlides() {
+        let slides = document.getElementsByClassName("mySlides");
+
+        // Ẩn tất cả các slides
         for (let i = 0; i < slides.length; i++) {
             slides[i].style.display = "none";
-            slides[i].style.transform = "translateX(100%)"; // Chuẩn bị cho hiệu ứng
         }
 
-        slides[n].style.display = "block";
-        slides[n].style.transform = "translateX(0)"; // Ảnh tiếp theo vào từ phải
+        // Hiển thị slide hiện tại
+        slides[slideIndex].style.display = "block";
+
+        // Tự động chuyển sang slide tiếp theo sau 5 giây
+        clearInterval(slideInterval);
+        slideInterval = setInterval(() => changeSlide(1), 5000);
     }
 
-    function plusSlides(n) {
-        slides[slideIndex].style.transform = "translateX(-100%)"; // Ảnh hiện tại ra bên trái
-        slideIndex = (slideIndex + n + slides.length) % slides.length;
-        showSlides(slideIndex);
+    function changeSlide(n) {
+        let slides = document.getElementsByClassName("mySlides");
+        slideIndex += n;
+
+        // Nếu vượt quá số lượng slide, quay lại slide đầu tiên
+        if (slideIndex >= slides.length) {
+            slideIndex = 0;
+        }
+        // Nếu lùi trước slide đầu tiên, quay lại slide cuối cùng
+        else if (slideIndex < 0) {
+            slideIndex = slides.length - 1;
+        }
+
+        // Hiển thị slide hiện tại
+        showSlides();
     }
 
-    // Hiển thị ảnh đầu tiên
-    showSlides(slideIndex);
+    // Khởi chạy slideshow tự động khi tải trang
+    showSlides();
+
+    ///////////////////////////////////////Phần commment :>> //////////////////////////////////////////////////////////////////////
+    document.getElementById('btn-submit-comment').addEventListener('click', function () {
+        const commentInput = document.getElementById('comment-input');
+        const commentText = commentInput.value.trim();
+
+        if (commentText) {
+            // Create new comment element
+            const commentCard = document.createElement('div');
+            commentCard.classList.add('comment-card');
+
+            // Add comment content with current time
+            const now = new Date().toLocaleString();
+            commentCard.innerHTML = `
+                    <p class="comment-content">${commentText}</p>
+                    <p class="comment-time">${now}</p>
+                `;
+
+            // Add comment to container at the beginning
+            const container = document.getElementById('comments-container');
+            container.insertBefore(commentCard, container.firstChild);
+
+            // Clear input
+            commentInput.value = '';
+        }
+    });
+
 </script>
-
 {% endblock %}
